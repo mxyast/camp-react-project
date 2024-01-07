@@ -1,44 +1,34 @@
-import React from 'react'
-import Categories from './Categories';
-import ProductList from '../pages/ProductList';
-import { Grid, GridColumn, GridRow, Image } from 'semantic-ui-react'
+import React from "react";
+import ProductList from "../pages/ProductList";
+import Categories from "./Categories";
 
-//import { Button, Icon, Label } from 'semantic-ui-react'
+import { Grid } from "semantic-ui-react";
+import { Routes, Route } from "react-router-dom"; // react-router-dom'dan Routes ve Route ekleyin
+import ProductDetail from "../pages/ProductDetail";
+import CartDetail from "../pages/CartDetail";
+import { ToastContainer } from "react-toastify";
+import ProductAdd from "../pages/ProductAdd";
 
 export default function Dashboard() {
   return (
     <div>
+      <ToastContainer position="bottom-right" />
       <Grid>
-        <GridRow>
-          <GridColumn width={6}>
-             <Categories></Categories>
-          </GridColumn>
-          <GridColumn width={10}>
-            <ProductList></ProductList>
-          </GridColumn>
-        </GridRow>
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Categories />
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <Routes>
+              <Route path="/" element={<ProductList />} />
+              <Route path="/products" element={<ProductList />} />
+              <Route path="/products/:name" element={<ProductDetail />} />
+              <Route path="/cart" element={<CartDetail />} />
+              <Route path="/product/add" component={ProductAdd} />
+            </Routes>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
-     
     </div>
-    // <div>
-    //     <Button as='div' labelPosition='right'>
-    //   <Button color='red'>
-    //     <Icon name='heart' />
-    //     Like
-    //   </Button>
-    //   <Label as='a' basic color='red' pointing='left'>
-    //     2,048
-    //   </Label>
-    // </Button>
-    // <Button as='div' labelPosition='right'>
-    //   <Button basic color='blue'>
-    //     <Icon name='fork' />
-    //     Fork
-    //   </Button>
-    //   <Label as='a' basic color='blue' pointing='left'>
-    //     2,048
-    //   </Label>
-    // </Button>
-    //</div>
   );
 }
